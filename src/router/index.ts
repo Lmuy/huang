@@ -4,6 +4,9 @@ import VarietyShow from '../views/varietyShow/index.vue'
 import Novel from '../views/novel/index.vue'
 import Movies from '../views/movies/index.vue'
 import Layout from '../views/layout/index.vue'
+import Register from '../views/register/index.vue'
+import Login from '../views/login/index.vue'
+import Setting from '../views/setting/index.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -18,6 +21,21 @@ const routes: Array<RouteRecordRaw> = [
         meta: { title: 'Comic', icon: 'comic' }
       }
     ]
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/setting',
+    name: 'Setting',
+    component: Setting
   },
   {
     path: '/varietyShow',

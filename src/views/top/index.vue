@@ -4,11 +4,12 @@
     <el-input placeholder="" size="small" prefix-icon="el-icon-search" v-model="searchName" class="searchInput" />
     <div class="right">
       <div v-if="isLogin">
+        <el-button type="text" size="dedium">设置</el-button>
         <el-button type="text" size="dedium">登出</el-button>
       </div>
       <div v-else>
-        <el-button type="text" size="dedium">注册</el-button>
-        <el-button type="text" size="dedium">登陆</el-button>
+        <el-button type="text" size="dedium" @click="register">注册</el-button>
+        <el-button type="text" size="dedium" @click="login">登陆</el-button>
       </div>
     </div>
   </div>
@@ -16,6 +17,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'Top',
@@ -24,12 +26,23 @@ export default defineComponent({
   setup() {
     const logoUrl = require('@assets/logo.png');
     const searchName = ''
-    const isLogin = true;
+    const isLogin = false;
+    const router = useRouter();
+
+    const methods = {
+      register() {
+        router.push({ name: 'Register' })
+      },
+      login() {
+        router.push({ name: 'Login' })
+      }
+    };
 
     return {
       logoUrl,
       searchName,
-      isLogin
+      isLogin,
+      ...methods
     }
   }
 });
