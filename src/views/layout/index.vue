@@ -5,10 +5,11 @@
     <!-- middle中部 -->
     <div class="middle">
       <div class="listContent">
+        <Menu />
         <router-view></router-view>
       </div>
       <div class="info">
-        info
+        个人信息
       </div>
     </div>
     <!-- footer底部 -->
@@ -20,12 +21,14 @@
 import { defineComponent } from 'vue';
 import Top from '@views/top/index.vue'
 import Footer from '@views/footer/index.vue'
+import Menu from '@views/menu/index.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     Top,
-    Footer
+    Footer,
+    Menu
   },
 });
 </script>
@@ -42,17 +45,18 @@ export default defineComponent({
     padding-left: 20vw;
     padding-right: 20vw;
     .listContent {
-      display: inline-block;
       width: 45vw;
       background-color: #ffffff;
       border: 1px solid #e2e2e2;
     }
     .info {
-      display: inline-block;
+      position: absolute;
+      right: 20vw;
+      top: 20px;
       margin-left: 18px;
       background-color: #ffffff;
       border: 1px solid #e2e2e2;
-      width: calc(15vw - 24px);
+      width: calc(15vw - 45px);
       height: calc(100vh - 130px);
     }
   }

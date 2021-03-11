@@ -1,6 +1,6 @@
 <template>
-  <div id="home">
-    home
+  <div id="movies">
+    影视
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'Home',
+  name: 'Movies',
   components: {
   },
   setup(props) {
@@ -17,7 +17,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-#home {
-  height: calc(100vh - 130px);
+#movies {
+  height: calc(100vh - 180px);
 }
 </style>

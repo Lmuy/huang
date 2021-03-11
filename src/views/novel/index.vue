@@ -1,0 +1,23 @@
+<template>
+  <div id="novel">
+    小说
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'Novel',
+  components: {
+  },
+  setup(props) {
+    
+  }
+});
+</script>
+<style lang="scss">
+#novel {
+  height: calc(100vh - 180px);
+}
+</style>
