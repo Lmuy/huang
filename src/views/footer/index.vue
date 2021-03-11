@@ -26,7 +26,7 @@ export default defineComponent({
 </script>
 <style lang="scss" rel="stylesheet/scss">
 #footer {
-  width: 60vw;
+  // width: 60vw;
   height: 44px;
   line-height: 44px;
   background-color: #fff;

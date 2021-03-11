@@ -36,7 +36,7 @@ export default defineComponent({
 </script>
 <style lang="scss" rel="stylesheet/scss">
 #top {
-  width: 60vw;
+  // width: 60vw;
   height: 44px;
   background-color: #fff;
   font-size: 15px;

@@ -18,6 +18,6 @@ export default defineComponent({
 </script>
 <style lang="scss">
 #home {
-  height: calc(100vh - 90px);
+  height: calc(100vh - 130px);
 }
 </style>
