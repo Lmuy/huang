@@ -3,7 +3,7 @@
     <div class="title">
       注册账号
     </div>
-    <el-form :rules="rules" ref="registerForm" label-position="right" label-width="80px" :model="form">
+    <el-form :rules="rules" ref="registerForm" label-position="right" label-width="80px" :model="form" class="registerContent">
       <el-form-item label="用户名" prop="username">
         <el-input v-model="form.username"></el-input>
       </el-form-item>
@@ -34,7 +34,7 @@ export default defineComponent({
   components: {
   },
   setup(props) {
-    const registerForm = ref<any>(null);
+    const registerForm = ref();
     const rules = reactive({
       username: [{ required: true, message: '帐号不能为空', trigger: 'blur' }],
       password: [{ required: true, message: '密码不能为空', trigger: 'blur' }]
@@ -78,6 +78,12 @@ export default defineComponent({
     line-height: 44px;
     padding-left: 18px;
     border-bottom: 1px solid rgba(0,0,0,.22);
+  }
+  .registerContent {
+    width: 50%;
+    position: relative;
+    left: 25%;
+    top: 20vh;
   }
 }
 </style>
