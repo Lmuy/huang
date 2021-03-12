@@ -3,8 +3,7 @@
     <el-menu
       :default-active="route.name"
       class="el-menu-demo"
-      mode="horizontal"
-      @select="handleSelect">
+      mode="horizontal">
       <el-menu-item index="Comic" @click="handlePath('Comic')">动漫</el-menu-item>
       <el-menu-item index="VarietyShow" @click="handlePath('VarietyShow')">综艺</el-menu-item>
       <el-menu-item index="Movies" @click="handlePath('Movies')">影视</el-menu-item>

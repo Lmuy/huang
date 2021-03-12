@@ -4,12 +4,13 @@
     <el-input placeholder="" size="small" prefix-icon="el-icon-search" v-model="searchName" class="searchInput" />
     <div class="right">
       <div v-if="isLogin">
-        <el-button type="text" size="dedium">设置</el-button>
-        <el-button type="text" size="dedium">登出</el-button>
+        <el-button type="text" size="medium" @click="setting">设置</el-button>
+        <el-button type="text" size="medium" @click="logout">登出</el-button>
       </div>
       <div v-else>
-        <el-button type="text" size="dedium" @click="register">注册</el-button>
-        <el-button type="text" size="dedium" @click="login">登陆</el-button>
+        <el-button type="text" size="medium" @click="register">注册</el-button>
+        <el-button type="text" size="medium" @click="login">登陆</el-button>
+        <el-button type="text" size="medium" @click="goHome">首页</el-button>
       </div>
     </div>
   </div>
@@ -26,7 +27,7 @@ export default defineComponent({
   setup() {
     const logoUrl = require('@assets/logo.png');
     const searchName = ''
-    const isLogin = false;
+    const isLogin = true;
     const router = useRouter();
 
     const methods = {
@@ -35,6 +36,17 @@ export default defineComponent({
       },
       login() {
         router.push({ name: 'Login' })
+      },
+      // 设置
+      setting() {
+        router.push({ name: 'Setting' })
+      },
+      // 登出
+      logout() {
+      },
+      // 进入主页
+      goHome() {
+        router.push({ name: 'Comic' })
       }
     };
 

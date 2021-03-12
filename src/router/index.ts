@@ -24,18 +24,42 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/register',
-    name: 'Register',
-    component: Register
+    component: Layout,
+    redirect: '/register/index',
+    children: [
+      {
+        path: '/register/index',
+        component: Register,
+        name: 'Register',
+        meta: { title: 'Register', icon: 'register' }
+      }
+    ]
   },
   {
     path: '/login',
-    name: 'Login',
-    component: Login
+    component: Layout,
+    redirect: '/login/index',
+    children: [
+      {
+        path: '/login/index',
+        component: Login,
+        name: 'Login',
+        meta: { title: 'Login', icon: 'login' }
+      }
+    ]
   },
   {
     path: '/setting',
-    name: 'Setting',
-    component: Setting
+    component: Layout,
+    redirect: '/setting/index',
+    children: [
+      {
+        path: '/setting/index',
+        component: Setting,
+        name: 'Setting',
+        meta: { title: 'Setting', icon: 'setting' }
+      }
+    ]
   },
   {
     path: '/varietyShow',

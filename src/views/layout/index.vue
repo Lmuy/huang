@@ -3,14 +3,17 @@
     <!-- top头部 -->
     <Top />
     <!-- middle中部 -->
-    <div class="middle">
+    <div v-if="isLogin" class="middle">
       <div class="listContent">
-        <Menu />
+        <Menu v-if="route.name !== 'Setting'"/>
         <router-view></router-view>
       </div>
       <div class="info">
         个人信息
       </div>
+    </div>
+    <div v-else class="middle">
+      <router-view></router-view>
     </div>
     <!-- footer底部 -->
     <Footer />
@@ -19,8 +22,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Top from '@views/top/index.vue'
-import Footer from '@views/footer/index.vue'
+import { useRoute } from 'vue-router';
+import Top from '@components/top/index.vue'
+import Footer from '@components/footer/index.vue'
 import Menu from '@views/menu/index.vue'
 
 export default defineComponent({
@@ -30,6 +34,18 @@ export default defineComponent({
     Footer,
     Menu
   },
+  setup(props) {
+    const isLogin = true;
+    const route = useRoute();
+
+    const methods = {}
+
+    return {
+      isLogin,
+      route,
+      ...methods,
+    }
+  }
 });
 </script>
 
