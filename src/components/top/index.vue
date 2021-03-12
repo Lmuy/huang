@@ -27,7 +27,7 @@ export default defineComponent({
   setup() {
     const logoUrl = require('@assets/logo.png');
     const searchName = ''
-    const isLogin = true;
+    const isLogin = false;
     const router = useRouter();
 
     const methods = {
