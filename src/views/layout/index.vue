@@ -35,7 +35,7 @@ export default defineComponent({
     Menu
   },
   setup(props) {
-    const isLogin = false;
+    const isLogin = true;
     const route = useRoute();
 
     const methods = {}
