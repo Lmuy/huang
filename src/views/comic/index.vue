@@ -4,7 +4,7 @@
       <div v-for="(item, index) in tableData" :key="index" class="comicItem">
         <!-- 左侧头像 -->
         <div class="avatar">
-          <el-avatar shape="square" :size="48" fit="fill" :src="item.url"></el-avatar>
+          <el-avatar shape="square" :size="48" fit="fill" :src="item.avatar"></el-avatar>
         </div>
         <!-- 右侧信息 -->
         <div class="comicInfo">
@@ -15,8 +15,8 @@
           <!-- 右下侧其它信息 -->
           <div class="moreInfo">
             <span>推荐指数:{{ item.score }}</span>
-            <span>{{ item.references }}</span>
-            <span>{{ item.createTime }}</span>
+            <span class="unImportantInfo">  •  {{ item.references }}  •  </span>
+            <span class="unImportantInfo">{{ item.createTime }}</span>
           </div>
         </div>
       </div>
@@ -25,13 +25,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, onMounted, ref, reactive } from 'vue';
+import { formatDate } from '@/utils/format';
 
 type comicItem = {
   name: string, // 动漫名称
   references: string, // 推荐人昵称
-  avatar: String, // 推荐人头像
-  createTime: Date, // 推荐时间
+  avatar: string, // 推荐人头像
+  createTime: string, // 推荐时间
   score: number, // 分数
 }
 
@@ -41,16 +42,34 @@ export default defineComponent({
   },
   setup(props) {
     const loading = ref(false);
-    let tableData: comicItem[] = [];
+    let tableData: comicItem[] = reactive([]);
 
     onMounted(() => {
-      tableData = [{
+      tableData.push({
         name: '进击的巨人',
         references: 'Lmuy',
         avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-        createTime: new Date(),
+        createTime: formatDate(new Date()),
         score: 4.3
-      }]
+      }, {
+        name: '转生成史莱姆这档事',
+        references: 'Lmuy',
+        avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+        createTime: formatDate(new Date()),
+        score: 4.2
+      }, {
+        name: '斗罗大陆',
+        references: 'Lmuy',
+        avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+        createTime: formatDate(new Date()),
+        score: 4.0
+      }, {
+        name: '刺客五六七',
+        references: 'Lmuy',
+        avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+        createTime: formatDate(new Date()),
+        score: 4.2
+      })
     })
 
     return {
@@ -64,8 +83,11 @@ export default defineComponent({
 #comic {
   height: calc(100vh - 180px);
   .comicItem {
-    height: 70px;
+    height: 60px;
     padding: 10px;
+    border-bottom: 1px solid rgba(0,0,0,.11);
+    display: flex;
+    align-items: center;
     .avatar {
       display: inline-block;
     }
@@ -76,7 +98,10 @@ export default defineComponent({
 
       }
       .moreInfo {
-
+        margin-top: 10px;
+        .unImportantInfo {
+          color: #ccc;
+        }
       }
     }
   }

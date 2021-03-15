@@ -69,12 +69,6 @@ module.exports = {
     }
     config.resolve.alias
       .set('@', resolve('src'))
-      .set('@config', resolve('src/config'))
-      .set('@api', resolve('src/api'))
-      .set('@assets', resolve('src/assets'))
-      .set('@utils', resolve('src/utils'))
-      .set('@views', resolve('src/views'))
-      .set('@components', resolve('src/components'))
     config.module.rules.delete('svg')
     config.module
       .rule('svg-smart')

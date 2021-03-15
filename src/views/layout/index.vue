@@ -23,9 +23,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useRoute } from 'vue-router';
-import Top from '@components/top/index.vue'
-import Footer from '@components/footer/index.vue'
-import Menu from '@views/menu/index.vue'
+import Top from '@/components/top/index.vue'
+import Footer from '@/components/footer/index.vue'
+import Menu from '@/views/menu/index.vue'
 
 export default defineComponent({
   name: 'Home',

@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import Layout from '@views/layout/index.vue'
+import Layout from '@/views/layout/index.vue'
 import { defineComponent } from 'vue';
 
 export default defineComponent({

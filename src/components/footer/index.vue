@@ -12,7 +12,7 @@ export default defineComponent({
   components: {
   },
   setup() {
-    const logoUrl = require('@assets/logo.png');
+    const logoUrl = require('@/assets/logo.png');
     const searchName = ''
     const isLogin = true;
 
