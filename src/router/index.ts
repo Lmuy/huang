@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Comic from '../views/comic/index.vue'
+import AddComic from '../views/comic/components/create.vue'
 import VarietyShow from '../views/varietyShow/index.vue'
 import Novel from '../views/novel/index.vue'
 import Movies from '../views/movies/index.vue'
@@ -18,6 +19,12 @@ const routes: Array<RouteRecordRaw> = [
         path: '/comic/index',
         component: Comic,
         name: 'Comic',
+        meta: { title: 'Comic', icon: 'comic' }
+      },
+      {
+        path: '/comic/create',
+        component: AddComic,
+        name: 'AddComic',
         meta: { title: 'Comic', icon: 'comic' }
       }
     ]

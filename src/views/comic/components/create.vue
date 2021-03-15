@@ -1,6 +1,10 @@
 <template>
   <div id="addComic">
-    创建动漫
+    <!-- 标题 -->
+    <div class="title">
+      动漫推荐
+    </div>
+    
   </div>
 </template>
 
@@ -19,5 +23,11 @@ export default defineComponent({
 <style lang="scss">
 #addComic {
   height: calc(100vh - 180px);
+  .title {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    border-bottom: 1px solid rgba(0,0,0,.11);
+  }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="movies">
-    影视
+    待开放
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div id="novel">
-    小说
+    待开放
   </div>
 </template>
 

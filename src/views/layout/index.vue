@@ -9,7 +9,7 @@
         <router-view></router-view>
       </div>
       <div class="info">
-        个人信息
+        <Info />
       </div>
     </div>
     <div v-else class="middle">
@@ -26,13 +26,15 @@ import { useRoute } from 'vue-router';
 import Top from '@/components/top/index.vue'
 import Footer from '@/components/footer/index.vue'
 import Menu from '@/views/menu/index.vue'
+import Info from '@/components/info/index.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     Top,
     Footer,
-    Menu
+    Menu,
+    Info
   },
   setup(props) {
     const isLogin = true;

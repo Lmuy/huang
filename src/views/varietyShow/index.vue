@@ -1,6 +1,6 @@
 <template>
   <div id="varietyShow">
-    综艺
+    待开放
   </div>
 </template>
 
