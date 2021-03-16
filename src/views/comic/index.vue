@@ -10,7 +10,7 @@
         <div class="comicInfo">
           <!-- 右上侧标题 -->
           <div class="infoTitle">
-            <el-link :underline="false">{{ item.name }}</el-link>
+            <el-link href="javascript:void(0);" :underline="false" @click="detail(item)">{{ item.name }}</el-link>
           </div>
           <!-- 右下侧其它信息 -->
           <div class="moreInfo">
@@ -27,6 +27,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref, reactive } from 'vue';
 import { formatDate } from '@/utils/format';
+import { useRouter } from 'vue-router';
 
 type comicItem = {
   name: string, // 动漫名称
@@ -43,6 +44,7 @@ export default defineComponent({
   setup(props) {
     const loading = ref(false);
     let tableData: comicItem[] = reactive([]);
+    const router = useRouter();
 
     onMounted(() => {
       tableData.push({
@@ -72,9 +74,17 @@ export default defineComponent({
       })
     })
 
+    const methods = {
+      detail(item: comicItem) {
+        router.push({ name: 'ComicDetail', query: { name: item.name } })
+      }
+    }
+
     return {
       loading,
-      tableData
+      tableData,
+      router,
+      ...methods,
     }
   }
 });
