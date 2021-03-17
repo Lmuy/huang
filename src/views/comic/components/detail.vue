@@ -2,7 +2,10 @@
   <div id="comicDetail">
     <!-- 标题 -->
     <div class="title">
-      动漫详情
+      <span>动漫详情</span>
+      <span class="moreInfo">
+        {{ form.references }}  •  {{ form.hits }}次点击
+      </span>
     </div>
     <el-form label-position="right" label-width="80px" :model="form" class="createContent">
       <el-form-item label="动漫名称" prop="name">
@@ -43,7 +46,9 @@ interface detailForm {
   rate: number,
   logo: string,
   reason: string,
-  website: string
+  website: string,
+  references: string,
+  hits: number
 }
 
 export default defineComponent({
@@ -58,7 +63,9 @@ export default defineComponent({
       rate: 0,
       logo: '',
       reason: '',
-      website: ''
+      website: '',
+      references: '',
+      hits: 0
     })
 
     onMounted(() => {
@@ -67,6 +74,8 @@ export default defineComponent({
       form.logo = 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg';
       form.reason = '非常不错';
       form.website = 'https://www.baidu.com';
+      form.references = "Lmuy";
+      form.hits = 0;
     })
 
     const methods = {
@@ -98,6 +107,12 @@ export default defineComponent({
     line-height: 40px;
     padding-left: 20px;
     border-bottom: 1px solid rgba(0,0,0,.11);
+    position: relative;
+    .moreInfo {
+      color: #ccc;
+      position: absolute;
+      right: 20px;
+    }
   }
   .createContent {
     width: 50%;

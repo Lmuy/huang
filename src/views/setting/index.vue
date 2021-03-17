@@ -4,8 +4,8 @@
       个人设置
     </div>
     <el-form :rules="rules" ref="settingForm" label-position="right" label-width="80px" :model="form" class="settingContent">
-      <el-form-item label="用户名" prop="username">
-        <el-input v-model="form.username"></el-input>
+      <el-form-item label="昵称" prop="references">
+        <el-input v-model="form.references"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input v-model="form.password"></el-input>
@@ -21,7 +21,7 @@
 import { defineComponent, toRefs, reactive, ref, unref } from 'vue';
 import { useRouter } from 'vue-router';
 interface ModelForm {
-  username: string,
+  references: string,
   password: string
 }
 
@@ -32,12 +32,12 @@ export default defineComponent({
   setup(props) {
     const settingForm = ref();
     const rules = reactive({
-      username: [{ required: true, message: '帐号不能为空', trigger: 'blur' }],
+      references: [{ required: true, message: '昵称不能为空', trigger: 'blur' }],
       password: [{ required: true, message: '密码不能为空', trigger: 'blur' }]
     });
     const router = useRouter();
     const form: ModelForm = reactive<ModelForm >({
-      username: '',
+      references: '',
       password: ''
     })
 

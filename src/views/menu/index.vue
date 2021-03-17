@@ -1,7 +1,7 @@
 <template>
   <div id="menu">
     <el-menu
-      :default-active="route.title"
+      :default-active="route.title ? 'route.title' : 'Comic'"
       class="el-menu-demo"
       mode="horizontal">
       <el-menu-item index="Comic" @click="handlePath('Comic')">动漫</el-menu-item>
