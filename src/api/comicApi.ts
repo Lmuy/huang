@@ -1,5 +1,31 @@
 import { post } from '@/utils/request';
+import { formatDate } from '@/utils/format';
 
+const tableData = [{
+  name: '进击的巨人',
+  references: 'Lmuy',
+  avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+  createTime: formatDate(new Date()),
+  score: 4.3
+}, {
+  name: '转生成史莱姆这档事',
+  references: 'Lmuy',
+  avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+  createTime: formatDate(new Date()),
+  score: 4.2
+}, {
+  name: '斗罗大陆',
+  references: 'Lmuy',
+  avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+  createTime: formatDate(new Date()),
+  score: 4.0
+}, {
+  name: '刺客五六七',
+  references: 'Lmuy',
+  avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+  createTime: formatDate(new Date()),
+  score: 4.2
+}]
 
 
 // 获取当前推荐详情
@@ -20,7 +46,7 @@ export function getComicList(data :any) {
   //   data
   // });
   return {
-    data: []
+    data: tableData
   }
 }
 

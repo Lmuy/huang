@@ -7,16 +7,28 @@ import {
   support
 } from '@/api/comicApi';
 
-const loginHang = {
+interface comicState {
+  globalName: string
+}
+
+const comic = {
   state: {
+    globalName: ''
   },
   getters: {
   },
   mutations: {
+    CHANGE_GLOBAL_NAME: (state: comicState, searchName: string) => {
+      state.globalName = searchName;
+    },
   },
   actions: {
+    // 改变查询条件
+    changeGlobalName({ commit }: any, searchName: string) {
+      commit('CHANGE_GLOBAL_NAME', searchName);
+    },
     // 列表
-    getComicList({}, data: ISearch): any {
+    getComicList({}, data: ISearch) {
       // return new Promise((resolve, reject) => {
       //   getComicList(data).then(response => {
       //     resolve(response);
@@ -82,4 +94,4 @@ const loginHang = {
     },
   }
 }
-export default loginHang
+export default comic

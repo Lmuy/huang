@@ -1,7 +1,7 @@
 <template>
   <div id="top">
     <el-image :src="logoUrl" fit="fill" class="logo" />
-    <el-input placeholder="" size="small" prefix-icon="el-icon-search" v-model="searchName" class="searchInput" />
+    <el-input placeholder="" size="small" prefix-icon="el-icon-search" v-model="searchName" class="searchInput" @keyup.enter="search()"/>
     <div class="right">
       <div v-if="isLogin">
         <el-button type="text" size="medium" @click="setting">设置</el-button>
@@ -17,8 +17,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'Top',
@@ -26,9 +27,10 @@ export default defineComponent({
   },
   setup() {
     const logoUrl = require('@/assets/logo.png');
-    const searchName = ''
+    const searchName = ref('')
     const isLogin = true;
     const router = useRouter();
+    const store = useStore();
 
     const methods = {
       register() {
@@ -47,6 +49,10 @@ export default defineComponent({
       // 进入主页
       goHome() {
         router.push({ name: 'Comic' })
+      },
+      // 改变查询条件
+      search() {
+        store.dispatch('changeGlobalName', searchName.value);
       }
     };
 

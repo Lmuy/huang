@@ -1,7 +1,7 @@
 <template>
   <div id="comic">
     <el-scrollbar style="height:100%;">
-      <div v-for="(item, index) in tableData" :key="index" class="comicItem">
+      <div v-for="(item, index) in tableData.list" :key="index" class="comicItem">
         <!-- 左侧头像 -->
         <div class="avatar">
           <el-avatar shape="square" :size="48" fit="fill" :src="item.avatar"></el-avatar>
@@ -25,9 +25,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, reactive } from 'vue';
+import { defineComponent, onMounted, ref, reactive, watch } from 'vue';
 import { formatDate } from '@/utils/format';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex'
 
 type comicItem = {
   name: string, // 动漫名称
@@ -36,6 +37,13 @@ type comicItem = {
   createTime: string, // 推荐时间
   score: number, // 分数
 }
+interface ISearch {
+  globalName: string,
+  orderBy: string,
+  ascending: boolean,
+  pageSize: number,
+  pageNo: number
+}
 
 export default defineComponent({
   name: 'Comic',
@@ -43,40 +51,43 @@ export default defineComponent({
   },
   setup(props) {
     const loading = ref(false);
-    let tableData: comicItem[] = reactive([]);
-    const router = useRouter();
-
-    onMounted(() => {
-      tableData.push({
+    let tableData = reactive({
+      list: [{
         name: '进击的巨人',
         references: 'Lmuy',
         avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
         createTime: formatDate(new Date()),
         score: 4.3
-      }, {
-        name: '转生成史莱姆这档事',
-        references: 'Lmuy',
-        avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-        createTime: formatDate(new Date()),
-        score: 4.2
-      }, {
-        name: '斗罗大陆',
-        references: 'Lmuy',
-        avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-        createTime: formatDate(new Date()),
-        score: 4.0
-      }, {
-        name: '刺客五六七',
-        references: 'Lmuy',
-        avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-        createTime: formatDate(new Date()),
-        score: 4.2
-      })
+      }]
+    });
+    const router = useRouter();
+    const store = useStore();
+    let searchData: ISearch = {
+      globalName: '',
+      orderBy: '',
+      ascending: true,
+      pageSize: 10,
+      pageNo: 1
+    }
+
+    onMounted(() => {
+      // methods.search();
+    })
+
+    watch(() => store.state.comic.globalName, (val, old) => {
+      searchData.globalName = val;
+      methods.search();
     })
 
     const methods = {
       detail(item: comicItem) {
         router.push({ name: 'ComicDetail', query: { name: item.name } })
+      },
+      // 获取列表
+      search() {
+        store.dispatch('getComicList', searchData).then((res) => {
+          tableData.list = res;
+        }).catch(() => {})
       }
     }
 
@@ -84,6 +95,7 @@ export default defineComponent({
       loading,
       tableData,
       router,
+      store,
       ...methods,
     }
   }
