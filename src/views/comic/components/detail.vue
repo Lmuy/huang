@@ -4,30 +4,30 @@
     <div class="title">
       <span>动漫详情</span>
       <span class="moreInfo">
-        {{ form.references }}  •  {{ form.hits }}次点击
+        {{ form.detail.references }}  •  {{ form.detail.hits }}次点击
       </span>
     </div>
-    <el-form label-position="right" label-width="80px" :model="form" class="createContent">
+    <el-form label-position="right" label-width="80px" :model="form.detail" class="createContent">
       <el-form-item label="动漫名称" prop="name">
-        <span>{{ form.name }}</span>
+        <span>{{ form.detail.name }}</span>
       </el-form-item>
-      <el-form-item label="动漫评分" prop="rate">
+      <el-form-item label="动漫评分" prop="score">
         <el-rate
-          v-model="form.rate"
+          v-model="form.detail.score"
           disabled
           show-score
           text-color="#ff9900"
           score-template="{value}">
         </el-rate>
       </el-form-item>
-      <el-form-item label="动漫logo" prop="logo">
-        <el-avatar shape="square" :size="48" fit="fill" :src="form.logo"></el-avatar>
+      <el-form-item label="动漫logo" prop="avatar">
+        <el-avatar shape="square" :size="48" fit="fill" :src="form.detail.avatar"></el-avatar>
       </el-form-item>
       <el-form-item label="推荐理由" prop="reason">
-        <span>{{ form.reason }}</span>
+        <span>{{ form.detail.reason }}</span>
       </el-form-item>
       <el-form-item label="观看网址" prop="website">
-        <el-link href="javascript:void(0);" :underline="false" @click="watchComic">{{ form.website }}</el-link>
+        <el-link href="javascript:void(0);" :underline="false" @click="watchComic">{{ form.detail.website }}</el-link>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="support()">支持</el-button>
@@ -39,12 +39,13 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from 'vue';
+import { useStore } from 'vuex'
 import { useRouter, useRoute } from 'vue-router';
 
 interface detailForm {
   name: string,
-  rate: number,
-  logo: string,
+  score: number,
+  avatar: string,
   reason: string,
   website: string,
   references: string,
@@ -58,27 +59,38 @@ export default defineComponent({
   setup(props) {
     const route = useRoute();
     const router = useRouter();
-    let form: detailForm = reactive<detailForm >({
-      name: '',
-      rate: 0,
-      logo: '',
-      reason: '',
-      website: '',
-      references: '',
-      hits: 0
+    const store = useStore();
+    let form = reactive({
+      detail: {
+        name: '',
+        score: 0,
+        avatar: '',
+        reason: '',
+        website: '',
+        references: '',
+        hits: 0
+      }
     })
 
     onMounted(() => {
-      form.name = route.query.name as string;
-      form.rate = 4.3;
-      form.logo = 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg';
-      form.reason = '非常不错';
-      form.website = 'https://www.baidu.com';
-      form.references = "Lmuy";
-      form.hits = 0;
+      methods.getDetail();
+
+      // form.name = route.query.name as string;
+      // form.score = 4.3;
+      // form.avatar = 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg';
+      // form.reason = '非常不错';
+      // form.website = 'https://www.baidu.com';
+      // form.references = "Lmuy";
+      // form.hits = 0;
     })
 
     const methods = {
+      getDetail() {
+        const detailName = route.query.name as string;
+        store.dispatch('getComicDetail', detailName).then((res) => {
+          form.detail = res;
+        }).catch(() => {})
+      },
       support() {
         router.push({ name: 'Comic' })
       },
@@ -86,7 +98,7 @@ export default defineComponent({
         router.push({ name: 'Comic' })
       },
       watchComic() {
-        window.open(form.website);
+        window.open(form.detail.website);
       }
     }
 
@@ -94,6 +106,7 @@ export default defineComponent({
       router,
       route,
       form,
+      store,
       ...methods,
     }
   }
@@ -102,6 +115,7 @@ export default defineComponent({
 <style lang="scss">
 #comicDetail {
   height: calc(100vh - 180px);
+  background: #fff;
   .title {
     height: 40px;
     line-height: 40px;

@@ -6,16 +6,24 @@ import {
   logout
 } from '@/api/loginApi';
 
+interface loginState {
+  loginStatus: boolean
+}
+
 const loginHang = {
   state: {
+    loginStatus: false
   },
   getters: {
   },
   mutations: {
+    CHANGE_LOGIN_STATUS: (state: loginState, status: boolean) => {
+      state.loginStatus = status;
+    },
   },
   actions: {
     // 登陆
-    login({}, data: ILogin): any {
+    login({ commit }: any, data: ILogin): any {
       // return new Promise((resolve, reject) => {
       //   login(data).then(response => {
       //     resolve(response);
@@ -23,12 +31,13 @@ const loginHang = {
       //     reject(error);
       //   })
       // })
+      commit('CHANGE_LOGIN_STATUS', true);
       return new Promise((resolve, reject) => {
         resolve(login(data).data);
       })
     },
     // 注册
-    register({}, data: IRegistar): any {
+    register({ commit }: any, data: IRegistar): any {
       // return new Promise((resolve, reject) => {
       //   register(data).then(response => {
       //     resolve(response);
@@ -36,6 +45,7 @@ const loginHang = {
       //     reject(error);
       //   })
       // })
+      commit('CHANGE_LOGIN_STATUS', true);
       return new Promise((resolve, reject) => {
         resolve(register(data).data);
       })
@@ -54,7 +64,7 @@ const loginHang = {
       })
     },
     // 登出
-    logout({}, data: ILogin): any {
+    logout({ commit }: any, data: ILogin): any {
       // return new Promise((resolve, reject) => {
       //   logout(data).then(response => {
       //     resolve(response);
@@ -62,6 +72,7 @@ const loginHang = {
       //     reject(error);
       //   })
       // })
+      commit('CHANGE_LOGIN_STATUS', false);
       return new Promise((resolve, reject) => {
         resolve(logout(data).data);
       })

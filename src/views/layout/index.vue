@@ -21,8 +21,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, watch, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { useStore } from 'vuex';
 import Top from '@/components/top/index.vue'
 import Footer from '@/components/footer/index.vue'
 import Menu from '@/views/menu/index.vue'
@@ -37,13 +38,19 @@ export default defineComponent({
     Info
   },
   setup(props) {
-    const isLogin = true;
+    let isLogin = ref(false);
     const route = useRoute();
+    const store = useStore();
+
+    watch(() => store.state.login.loginStatus, (val, old) => {
+      isLogin.value = val;
+    })
 
     const methods = {}
 
     return {
       isLogin,
+      store,
       route,
       ...methods,
     }

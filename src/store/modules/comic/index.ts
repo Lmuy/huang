@@ -41,7 +41,7 @@ const comic = {
       })
     },
     // 详情
-    getComicDetail({}, data: IDetail): any {
+    getComicDetail({}, data: string): any {
       // return new Promise((resolve, reject) => {
       //   getComicDetail(data).then(response => {
       //     resolve(response);

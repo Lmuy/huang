@@ -19,7 +19,9 @@
 
 <script lang="ts">
 import { defineComponent, toRefs, reactive, ref, unref } from 'vue';
+import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import { ElMessage } from 'element-plus'
 interface ModelForm {
   username: string,
   password: string
@@ -36,6 +38,7 @@ export default defineComponent({
       password: [{ required: true, message: '密码不能为空', trigger: 'blur' }]
     });
     const router = useRouter();
+    const store = useStore();
     const form: ModelForm = reactive<ModelForm >({
       username: '',
       password: ''
@@ -44,7 +47,14 @@ export default defineComponent({
     const login = () => {
       loginForm.value.validate((valid: boolean) => {
         if (valid) {
-          router.push({ name: 'Comic' })
+          store.dispatch('login', form).then((res) => {
+            ElMessage({
+              showClose: true,
+              message: `恭喜你，登陆成功`,
+              type: 'success'
+            });
+            router.push({ name: 'Comic' })
+          }).catch(() => {})
         }
       });
     }
@@ -57,6 +67,7 @@ export default defineComponent({
     return {
       rules,
       form,
+      store,
       loginForm,
       ...methods,
       login,

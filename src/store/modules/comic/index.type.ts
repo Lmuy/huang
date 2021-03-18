@@ -8,7 +8,7 @@ export interface ISearch {
 
 export interface ICreate {
   name: string,
-  rate: string,
+  score: string,
   logo: string,
   reason: string,
   website: string

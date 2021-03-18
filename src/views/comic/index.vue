@@ -104,6 +104,7 @@ export default defineComponent({
 <style lang="scss">
 #comic {
   height: calc(100vh - 180px);
+  background: #fff;
   .comicItem {
     height: 60px;
     padding: 10px;

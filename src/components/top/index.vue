@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex'
 
@@ -28,9 +28,13 @@ export default defineComponent({
   setup() {
     const logoUrl = require('@/assets/logo.png');
     const searchName = ref('')
-    const isLogin = true;
+    let isLogin = ref(false);
     const router = useRouter();
     const store = useStore();
+
+    watch(() => store.state.login.loginStatus, (val, old) => {
+      isLogin.value = val;
+    })
 
     const methods = {
       register() {
@@ -45,6 +49,9 @@ export default defineComponent({
       },
       // 登出
       logout() {
+        store.dispatch('logout').then((res) => {
+            router.push({ name: 'Login' })
+          }).catch(() => {})
       },
       // 进入主页
       goHome() {
@@ -60,6 +67,7 @@ export default defineComponent({
       logoUrl,
       searchName,
       isLogin,
+      store,
       ...methods
     }
   }
