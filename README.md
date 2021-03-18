@@ -18,4 +18,4 @@ npm run build:prod
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+See [vue3.0中文文档](https://vue3js.cn/docs/zh/guide/migration/introduction.html).
