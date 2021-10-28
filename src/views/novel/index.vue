@@ -1,16 +1,19 @@
 <template>
   <div id="novel">
     <el-scrollbar style="height:100%;" v-loading="loading">
+      <audio src="https://music.163.com/#/song?id=1842025914" controls="controls">
+        您的浏览器不支持 audio 标签。
+      </audio>
       <div v-for="(item, index) in tableData.list" :key="index" class="musicItem">
         <!-- 左侧音乐头像 -->
         <div class="avatar">
-          <el-avatar shape="square" :size="48" fit="fill" :src="item.avatar"></el-avatar>
+          <el-avatar shape="circle" :size="48" fit="fill" :src="item.avatar" @click="playMusic(item)"></el-avatar>
         </div>
         <!-- 右侧信息 -->
         <div class="comicInfo">
           <!-- 右上侧标题 -->
           <div class="infoTitle">
-            <el-link href="javascript:void(0);" :underline="false" @click="detail(item)">{{ item.name }}</el-link>
+            <el-link href="javascript:void(0);" :underline="false" >{{ item.name }}</el-link>
           </div>
           <!-- 右下侧其它信息 -->
           <div class="moreInfo">
@@ -50,7 +53,8 @@ export default defineComponent({
   components: {
   },
   setup(props) {
-    const loading = ref(false);
+    let loading = ref(false);
+    let play = ref(false);
     let tableData = reactive<{ list: musicItem[] }>({
       list: []
     });
@@ -69,8 +73,8 @@ export default defineComponent({
     })
 
     const methods = {
-      detail(item: musicItem) {
-        // router.push({ name: 'ComicDetail', query: { name: item.name } })
+      playMusic(item: musicItem) {
+        play.value = !play.value
       },
       // 获取列表
       search() {
@@ -106,6 +110,14 @@ export default defineComponent({
     align-items: center;
     .avatar {
       display: inline-block;
+      cursor: pointer;
+      &:hover {
+        transform: rotate(30turn);
+        transition-delay: 1s;
+        transition-property: all;
+        transition-duration: 59s;
+        transition-timing-function: cubic-bezier(.34,0,.84,1);
+      }
     }
     .comicInfo {
       display: inline-block;
