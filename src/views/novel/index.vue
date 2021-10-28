@@ -1,7 +1,7 @@
 <template>
   <div id="novel">
     <el-scrollbar style="height:100%;" v-loading="loading">
-      <audio id="musicPlay" :src="musicUrl" controls="controls" style="display:none">
+      <audio id="musicPlay" :src="musicUrl" controls="controls">
         您的浏览器不支持 audio 标签。
       </audio>
       <div v-for="(item, index) in tableData.list" :key="index" class="musicItem">
@@ -81,7 +81,9 @@ export default defineComponent({
         // 播放另一首
         if (musicUrl.value !== item.url) {
           musicUrl.value = item.url
-          music.play()
+          setTimeout(() => {
+            music.play()
+          }, 200)
         } else {
           // 继续播放
           if (music.paused) {
@@ -106,6 +108,7 @@ export default defineComponent({
     return {
       loading,
       tableData,
+      musicUrl,
       router,
       store,
       ...methods,
