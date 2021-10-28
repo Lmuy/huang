@@ -1,4 +1,4 @@
-import { post } from '@/utils/request';
+import { http } from '@/utils/request';
 import { formatDate } from '@/utils/format';
 import { ICreate } from '@/store/modules/comic/index.type'
 

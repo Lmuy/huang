@@ -7,7 +7,7 @@ import { getToken } from './auth'
 
 /* 全局默认配置 */
 var http = axios.create({
-  baseURL: baseApi,
+  baseURL: baseApi.default.baseApi,
   timeout: 5000
 })
 /* 请求拦截器 */
@@ -40,36 +40,4 @@ http.interceptors.response.use(
   }
 )
 
-function get (request: any) {
-  return new Promise((resolve, reject) => {
-    http.get(request.url).then(
-      response => {
-        resolve(response.data)
-      },
-      err => {
-        reject(err)
-      }
-    )
-      .catch(error => {
-        reject(error)
-      })
-  })
-}
-
-function post (request: any) {
-  return new Promise((resolve, reject) => {
-    http.post(request.url, request.data).then(
-      response => {
-        resolve(response.data)
-      },
-      err => {
-        reject(err)
-      }
-    )
-      .catch(error => {
-        reject(error)
-      })
-  })
-}
-
-export { http, get, post }
+export { http }

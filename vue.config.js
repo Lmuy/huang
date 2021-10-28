@@ -19,12 +19,12 @@ module.exports = {
   integrity: false,                                                                 // 在生成的HTML中的<link rel="stylesheet">和<script>标签上启用Subresource Integrity(SRI).
   devServer: {                                                                      // 所有webpack-dev-server的选项都支持.
     proxy: {                // 代理
-      '/proxy': {
-        target: 'http://localhost:8080',
+      '/huang_api': {
+        target: 'https://www.fastmock.site/mock/8802f1f460c9b63f8b1b48bc701da385/work',
         secure: true,
         changeOrigin: true,
         pathRewrite: {
-          '^/proxy': '/'
+          '^/huang_api': '/'
         }
       }
     },

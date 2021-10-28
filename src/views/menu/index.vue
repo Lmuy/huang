@@ -7,7 +7,7 @@
       <el-menu-item index="Comic" @click="handlePath('Comic')">动漫</el-menu-item>
       <el-menu-item index="VarietyShow" @click="handlePath('VarietyShow')">综艺</el-menu-item>
       <el-menu-item index="Movies" @click="handlePath('Movies')">影视</el-menu-item>
-      <el-menu-item index="Novel" @click="handlePath('Novel')">小说</el-menu-item>
+      <el-menu-item index="Novel" @click="handlePath('Novel')">音乐</el-menu-item>
     </el-menu>
   </div>
 </template>

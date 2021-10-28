@@ -1,4 +1,4 @@
-import { post } from '@/utils/request';
+import { http } from '@/utils/request';
 
 
 
