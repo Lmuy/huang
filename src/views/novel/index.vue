@@ -1,7 +1,7 @@
 <template>
   <div id="novel">
     <el-scrollbar style="height:100%;" v-loading="loading">
-      <audio src="https://music.163.com/#/song?id=1842025914" controls="controls">
+      <audio id="musicPlay" :src="musicUrl" controls="controls" style="display:none">
         您的浏览器不支持 audio 标签。
       </audio>
       <div v-for="(item, index) in tableData.list" :key="index" class="musicItem">
@@ -55,6 +55,7 @@ export default defineComponent({
   setup(props) {
     let loading = ref(false);
     let play = ref(false);
+    let musicUrl = ref('')
     let tableData = reactive<{ list: musicItem[] }>({
       list: []
     });
@@ -75,6 +76,20 @@ export default defineComponent({
     const methods = {
       playMusic(item: musicItem) {
         play.value = !play.value
+        let music = <HTMLAudioElement> document.getElementById('musicPlay')
+
+        // 播放另一首
+        if (musicUrl.value !== item.url) {
+          musicUrl.value = item.url
+          music.play()
+        } else {
+          // 继续播放
+          if (music.paused) {
+            music.play()
+          } else {
+            music.pause()
+          }
+        }
       },
       // 获取列表
       search() {
