@@ -1,7 +1,7 @@
 <template>
   <div id="novel">
     <el-scrollbar style="height:100%;" v-loading="loading">
-      <audio id="musicPlay" :src="musicUrl" controls="controls">
+      <audio id="musicPlay" :src="musicUrl" controls="controls" style="display:none">
         您的浏览器不支持 audio 标签。
       </audio>
       <div v-for="(item, index) in tableData.list" :key="index" class="musicItem">
