@@ -29,6 +29,10 @@ createApp(App).use(dyNumber).mount('#app')
 | `value`  | 内容         | `number` | 数字                                | 100    |
 | `during` | 动画持续时间 | number   | 数字                                | 0.5    |
 
-## Authors
+## 作者
 
 - [@Lmuy](https://www.github.com/Lmuy)
+
+## 预览
+
+![插件预览](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0ef2ee2275874fcb80429082cccf4374~tplv-k3u1fbpfcp-watermark.image?)
