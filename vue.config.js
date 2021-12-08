@@ -6,6 +6,7 @@ function resolve (dir) {
 const port = 8080 // dev port
 
 module.exports = {
+  lintOnSave: false,
   publicPath: './',                                                                  // 部署应用时的基本URL.
   outputDir: 'dist',                                                                // build时构建文件的目录,构建时传入 --no-clean 可关闭该行为.
   assetsDir: 'static',                                                              // build时放置生成的静态资源(js、css、img、fonts)的(相对于 outputDir 的)目录.

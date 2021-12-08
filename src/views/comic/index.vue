@@ -1,7 +1,7 @@
 <template>
   <div id="comic">
     <el-scrollbar style="height:100%;">
-      <div v-for="(item, index) in tableData.list" :key="index" class="comicItem">
+      <div v-for="(item, index) in tableData" :key="index" class="comicItem">
         <!-- 左侧头像 -->
         <div class="avatar">
           <el-avatar shape="square" :size="48" fit="fill" :src="item.avatar"></el-avatar>
@@ -14,9 +14,10 @@
           </div>
           <!-- 右下侧其它信息 -->
           <div class="moreInfo">
-            <span>推荐指数:{{ item.score }}</span>
+            <span ref="a">推荐指数:<dy-number type="success" :value="item.score*10"/></span>
             <span class="unImportantInfo">  •  {{ item.references }}  •  </span>
             <span class="unImportantInfo">{{ item.createTime }}</span>
+            
           </div>
         </div>
       </div>
@@ -30,7 +31,7 @@ import { formatDate } from '@/utils/format';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex'
 
-type comicItem = {
+type ComicItem = {
   name: string, // 动漫名称
   references: string, // 推荐人昵称
   avatar: string, // 推荐人头像
@@ -51,15 +52,13 @@ export default defineComponent({
   },
   setup(props) {
     const loading = ref(false);
-    let tableData = reactive({
-      list: [{
+    let tableData = ref([{
         name: '进击的巨人',
         references: 'Lmuy',
         avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
         createTime: formatDate(new Date()),
         score: 4.3
-      }]
-    });
+      }]);
     const router = useRouter();
     const store = useStore();
     let searchData: ISearch = {
@@ -69,9 +68,15 @@ export default defineComponent({
       pageSize: 10,
       pageNo: 1
     }
-
+    let a: Ref = ref(null)
+    
     onMounted(() => {
       // methods.search();
+      // function join<T, U>(first: T, second: U) {
+      //   return `${first}${second}`
+      // }
+      // join <number, string> (1, '2')
+      a.value.style.color = 'red'
     })
 
     watch(() => store.state.comic.globalName, (val, old) => {
@@ -79,19 +84,21 @@ export default defineComponent({
       methods.search();
     })
 
-    const methods = {
-      detail(item: comicItem) {
+    const methods: IMethods = {
+      detail(item: ComicItem) {
         router.push({ name: 'ComicDetail', query: { name: item.name } })
       },
       // 获取列表
       search() {
+        console.log(this)
         store.dispatch('getComicList', searchData).then((res) => {
-          tableData.list = res;
+          tableData.value = res;
         }).catch(() => {})
       }
     }
 
     return {
+      a,
       loading,
       tableData,
       router,

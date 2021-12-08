@@ -1,0 +1,54 @@
+// 颜色
+$number-default-color: #666666;
+$number-primary-color: #409eff;
+$number-danger-color: #f56c6c;
+$number-success-color: #67c23a;
+$number-warning-color: #e6a23c;
+$number-info-color: #909399;
+
+// 大小
+$number-medium-size: 16px;
+$number-small-size: 14px;
+$number-mini-size: 12px;
+
+// 颜色
+.var-number {
+  &-color--default {
+    color: $number-default-color;
+  }
+
+  &-color--primary {
+    color: $number-primary-color;
+  }
+
+  &-color--info {
+    color: $number-info-color;
+  }
+
+  &-color--success {
+    color: $number-success-color;
+  }
+
+  &-color--warning {
+    color: $number-warning-color;
+  }
+
+  &-color--danger {
+    color: $number-danger-color;
+  }
+}
+
+// 大小
+.var-number {
+  &-size--medium {
+    font-size: $number-medium-size;
+  }
+
+  &-size--small {
+    font-size: $number-small-size;
+  }
+
+  &-size--mini {
+    font-size: $number-mini-size;
+  }
+}
