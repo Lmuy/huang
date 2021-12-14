@@ -30,6 +30,8 @@ import { defineComponent, onMounted, ref, reactive, watch } from 'vue';
 import { formatDate } from '@/utils/format';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex'
+import { ShortCut } from '@/lib/shortcut-key'
+
 
 type ComicItem = {
   name: string, // 动漫名称
@@ -77,6 +79,13 @@ export default defineComponent({
       // }
       // join <number, string> (1, '2')
       a.value.style.color = 'red'
+
+      ShortCut.bind('M+D', (res: any) => {
+        console.log(res)
+      })
+      ShortCut.bind('ALT', (res: any) => {
+        console.log(res)
+      })
     })
 
     watch(() => store.state.comic.globalName, (val, old) => {

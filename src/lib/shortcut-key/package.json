@@ -1,8 +1,8 @@
 {
-  "name": "dy-lmuy-number",
-  "version": "0.0.2",
-  "description": "动态数字",
-  "main": "index.ts",
+  "name": "lmuy-shortcut-key",
+  "version": "0.0.1",
+  "description": "监听键盘快捷键操作",
+  "main": "index.js",
   "directories": {
     "lib": "lib"
   },
