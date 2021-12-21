@@ -11,7 +11,10 @@ export const checkAll = (args: any, fn: Function, prevent: boolean = false) => {
   }
 }
 
+
+
 const checkDown = (args: any, fn: Function, prevent: boolean = false) => {
+  let arr: any = []
   let i = 0
   document.addEventListener("keydown", (e) => {
     if (prevent) {
@@ -19,13 +22,25 @@ const checkDown = (args: any, fn: Function, prevent: boolean = false) => {
     }
     let len = args.length
     for (const x of args) {
-      if (e.keyCode === parseInt(keyboard[x])) {
+      if (e.keyCode === parseInt(keyboard[args[i]])) {
+        if (!arr.includes(args[i])) {
+          arr.push(args[i])
+        }
         i++
       }
     }
-    if (i === len) {
+    if (i === len && arr.length === i) {
       i = 0
       fn(args)
+    } else if (i === len && arr.length !== i) {
+      i = 0
+    }
+  });
+  document.addEventListener("keyup", (e) => {
+    for (const x of args) {
+      if (e.keyCode === parseInt(keyboard[x])) {
+        arr = arr.filter((item: any) => item !== x)
+      }
     }
   });
 }

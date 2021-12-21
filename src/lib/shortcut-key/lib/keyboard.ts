@@ -38,7 +38,7 @@ export enum keyboard  {
 
   DELETE= 46, //Delete键
 
-  COMMOND= 56, // mac下commond键
+  COMMOND= 91, // mac下commond键
 
   //字母表
   A= 65,
@@ -68,11 +68,11 @@ export enum keyboard  {
   Y= 89,
   Z= 90,
 
-  LWIN= 91, //左徽标键
+  // LWIN= 91, //左徽标键
 
   RWIN= 92, //右徽标键
 
-  APPS= 93, //鼠标右键快捷键
+  // APPS= 93, //鼠标右键快捷键
 
   NUMPAD0= 96, //小键盘0
 

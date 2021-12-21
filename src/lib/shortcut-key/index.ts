@@ -8,10 +8,10 @@ export const ShortCut = {
         if(args.indexOf('+') > 0) {
           const newArg = args.split('+')
           // 全部变大写
-          const upperArg = newArg.map((item) => {
-            return item.toLocaleUpperCase()
-          })
-          checkAll(upperArg, fn, prevent)
+          // const upperArg = newArg.map((item) => {
+          //   return item.toLocaleUpperCase()
+          // })
+          checkAll(newArg, fn, prevent)
         }
         // 单个键的事件
         else {

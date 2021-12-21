@@ -15,7 +15,7 @@
     "dy-lmuy-number": "0.0.1",
     "element-plus": "^1.0.2-beta.33",
     "js-cookie": "^3.0.0-rc.1",
-    "lmuy-shortcut-key": "0.0.1",
+    "lmuy-shortcut-key": "0.0.3",
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "nprogress": "^0.2.0",
