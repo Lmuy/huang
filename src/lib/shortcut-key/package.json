@@ -1,6 +1,6 @@
 {
   "name": "lmuy-shortcut-key",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "监听键盘快捷键操作",
   "main": "index.js",
   "directories": {
