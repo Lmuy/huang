@@ -80,9 +80,9 @@ export default defineComponent({
       // join <number, string> (1, '2')
       a.value.style.color = 'red'
 
-      ShortCut.bind('M+D', (res: any) => {
-        console.log(res)
-      })
+      ShortCut.bind('Ctrl+S', (res: any) => {
+        alert('s')
+      }, true)
       ShortCut.bind('ALT', (res: any) => {
         console.log(res)
       })

@@ -5,7 +5,7 @@
 ### 安装
 
 ```js
-npm lmuy-shortcut-key -save
+npm install lmuy-shortcut-key --save
 ```
 
 ### 使用

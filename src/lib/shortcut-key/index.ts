@@ -1,18 +1,22 @@
 import { checkAll } from "./lib/shortcutKey"
 export const ShortCut = {
-    bind: function(args: string | Array<string>, fn: Function){
+    // 快捷键绑定键，快捷键执行回调，是否禁止浏览器默认快捷键
+    bind: function(args: string | Array<string>, fn: Function, prevent: boolean = false){
       debugger
       if (typeof(args) === 'string') {
         // 多个键的事件
         if(args.indexOf('+') > 0) {
           const newArg = args.split('+')
-          
-          checkAll(newArg, fn)
+          // 全部变大写
+          const upperArg = newArg.map((item) => {
+            return item.toLocaleUpperCase()
+          })
+          checkAll(upperArg, fn, prevent)
         }
         // 单个键的事件
         else {
           const newArg = [args.toLocaleUpperCase()]
-          checkAll(newArg, fn)
+          checkAll(newArg, fn, prevent)
         }
       } else if (args instanceof Array) {
           // 支持多个快捷键
