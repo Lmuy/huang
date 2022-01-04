@@ -10,16 +10,18 @@ const tableData = [{
   score: 4.3,
   website: 'https://www.baidu.com',
   reason: '进击的巨人真的很好看',
-  hits: 86
+  hits: 86,
+  dialogVisible: false
 }, {
   name: '转生成史莱姆这档事',
   references: 'Lmuy',
-  avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+  avatar: 'https://p6-passport.byteacctimg.com/img/user-avatar/c9aa4289f8401441a38967d02dad2b38~300x300.image',
   createTime: formatDate(new Date()),
   score: 4.2,
   website: 'https://www.baidu.com',
   reason: '转生成史莱姆这档事真的很好看',
-  hits: 46
+  hits: 46,
+  dialogVisible: false
 }, {
   name: '斗罗大陆',
   references: 'Lmuy',
@@ -28,7 +30,8 @@ const tableData = [{
   score: 4.0,
   website: 'https://www.baidu.com',
   reason: '斗罗大陆真的很好看',
-  hits: 67
+  hits: 67,
+  dialogVisible: false
 }, {
   name: '刺客五六七',
   references: 'Lmuy',
@@ -37,7 +40,8 @@ const tableData = [{
   score: 4.2,
   website: 'https://www.baidu.com',
   reason: '刺客五六七真的很好看',
-  hits: 56
+  hits: 56,
+  dialogVisible: false
 }]
 
 

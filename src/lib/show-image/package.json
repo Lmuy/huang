@@ -1,8 +1,8 @@
 {
-  "name": "lmuy-shortcut-key",
-  "version": "0.0.4",
-  "description": "监听键盘快捷键操作",
-  "main": "index.js",
+  "name": "lmuy-image-view",
+  "version": "1.0.0",
+  "description": "全屏展示图片",
+  "main": "index.ts",
   "directories": {
     "lib": "lib"
   },

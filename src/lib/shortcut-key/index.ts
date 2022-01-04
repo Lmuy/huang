@@ -2,7 +2,6 @@ import { checkAll } from "./lib/shortcutKey"
 export const ShortCut = {
     // 快捷键绑定键，快捷键执行回调，是否禁止浏览器默认快捷键
     bind: function(args: string | Array<string>, fn: Function, prevent: boolean = false){
-      debugger
       if (typeof(args) === 'string') {
         // 多个键的事件
         if(args.indexOf('+') > 0) {

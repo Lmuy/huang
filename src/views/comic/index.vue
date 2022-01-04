@@ -4,7 +4,8 @@
       <div v-for="(item, index) in tableData" :key="index" class="comicItem">
         <!-- 左侧头像 -->
         <div class="avatar">
-          <el-avatar shape="square" :size="48" fit="fill" :src="item.avatar"></el-avatar>
+          <el-avatar shape="square" :size="48" fit="fill" :src="item.avatar" style="cursor:pointer" @click="showImage(item)"></el-avatar>
+          <image-view  :src="item.avatar" v-model:show-picture="item.dialogVisible" @update:show-picture="closeImage(item)"/>
         </div>
         <!-- 右侧信息 -->
         <div class="comicInfo">
@@ -39,6 +40,7 @@ type ComicItem = {
   avatar: string, // 推荐人头像
   createTime: string, // 推荐时间
   score: number, // 分数
+  dialogVisible: boolean
 }
 interface ISearch {
   globalName: string,
@@ -59,7 +61,8 @@ export default defineComponent({
         references: 'Lmuy',
         avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
         createTime: formatDate(new Date()),
-        score: 4.3
+        score: 4.3,
+        dialogVisible: false
       }]);
     const router = useRouter();
     const store = useStore();
@@ -73,22 +76,22 @@ export default defineComponent({
     let a: Ref = ref(null)
     
     onMounted(() => {
-      // methods.search();
+      methods.search();
       // function join<T, U>(first: T, second: U) {
       //   return `${first}${second}`
       // }
       // join <number, string> (1, '2')
       a.value.style.color = 'red'
 
-      ShortCut.bind('CTRL+S', (res: any) => {
-        alert('s')
-      }, true)
-      ShortCut.bind('CTRL+D', (res: any) => {
-        alert('d')
-      }, true)
-      ShortCut.bind('ALT', (res: any) => {
-        console.log(res)
-      })
+      // ShortCut.bind('CTRL+S', (res: any) => {
+      //   alert('s')
+      // }, true)
+      // ShortCut.bind('CTRL+D', (res: any) => {
+      //   alert('d')
+      // }, true)
+      // ShortCut.bind('ALT', (res: any) => {
+      //   console.log(res)
+      // })
     })
 
     watch(() => store.state.comic.globalName, (val, old) => {
@@ -106,6 +109,14 @@ export default defineComponent({
         store.dispatch('getComicList', searchData).then((res) => {
           tableData.value = res;
         }).catch(() => {})
+      },
+      // 打开放大图片弹窗
+      showImage(item: ComicItem) {
+        item.dialogVisible = true
+      },
+      // 关闭放大图片弹窗
+      closeImage(item: ComicItem) {
+        item.dialogVisible = false
       }
     }
 
